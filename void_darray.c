@@ -123,6 +123,8 @@ void destroy (Darray *darray) {
 }
 
 // not actuallty deep destroy, not destroying deep enough
+// doesnt work, increments data until its NULL
+// find way to do it so struct are not changed until end
 void deep_destroy (Darray *darray) {
 	/*
 	for (int i = 0; i < size(darray); i++) {

@@ -70,7 +70,14 @@ Operator Div = {"/", 2, &divd};
 
 Operator Sq = {"sq", 1, &sq};
 
+/* TODO: Replace NaN with (Operator) {} or something simpler, just check one
+ * field perhaps? */
 Operator NaN = {{'\0'}, 0, NULL};
+
+/* TODO: Use a better data structure to store operators and variables, one that
+ * does not need sentinel values, but store the array length too. I.e. a
+ * dynamic array structure without needing the dynamic part (yet). Or use a 
+ * hash set. */
 
 Operator opr_lst[] = {
 {"+", 2, &add},

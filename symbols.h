@@ -6,7 +6,7 @@ typedef enum OPTYPE OPTYPE;
 
 struct Variable {
     char repr;
-} ;
+};
 typedef struct Variable Variable;
 
 struct Operand {
@@ -55,7 +55,7 @@ Variable *add_var (char repr, Variable list[]);
 // returns a pointer to a variable named repr if it is in list
 // returns NULL otherwise
 // use instead of in_var_lst
-Variable *get_var (char repr, Variable list[]);
+Variable *get_var (char repr, const Variable list[]);
 
 void print_var_lst (const Variable list[]);
 
