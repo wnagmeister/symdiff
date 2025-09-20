@@ -34,33 +34,34 @@ static int is_num (const char *s) {
 	return 1;
 }
 
+/* Do the tokens really need to be heap allocated? */
 // converts a string representation to a Operand or Operator token
 Token *tokenify (const char s[]) {
 	
 	Token *p = malloc(sizeof(*p));
 
-	 if (get_opr(s)) {
+	if (get_opr(s)) {
 		Operator *Opr = get_opr(s);
 		p -> token_type = OPERATOR;
 		p -> Opr = Opr;
-		return p;
-	 } else if (is_num(s)) {
+	} else if (is_num(s)) {
 		 Operand *Opd = init_scalar_opd(atof(s));
 		 p -> token_type = OPERAND;
 		 p -> Opd = Opd;
-	 } else {		// if s is variable
+	} else {		// if s is variable
 		Variable *Var = add_var(*s, var_lst);
 		Operand *Opd = init_var_opd(Var);
 		p -> token_type = OPERAND;
 		p -> Opd = Opd;
-	 }
-	 return p;
+	}
+	return p;
 }
 
 //converts a string expression into array of tokens
 Token *str_to_tokens (char s[]) {
 
 	int size = 4;		// token array starting size
+/* TODO: Use a real dynamic array instead of the makeshift one */
 	Token *array = malloc(sizeof(*array) * size); 
 		
 	char *str_token = strtok(s, " ");		// splits string
@@ -69,6 +70,7 @@ Token *str_to_tokens (char s[]) {
 	for (i = 0; str_token; ++i, str_token = strtok(NULL, " ")) {
 
 		Token *token = tokenify(str_token);
+		/* this is array[i] ? */
 		*(array+i) = *token;
 		free(token);
 
